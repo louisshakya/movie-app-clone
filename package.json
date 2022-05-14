@@ -2,7 +2,7 @@
   "name": "movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://louisshakya.github.io/movie-clone",
+  "homepage": "https://louisshakya.github.io/movie-app-clone/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
