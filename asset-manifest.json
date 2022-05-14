@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/movie-clone/static/css/main.d9bf212a.css",
-    "main.js": "/movie-clone/static/js/main.a7449ef0.js",
-    "static/js/787.14e4bc02.chunk.js": "/movie-clone/static/js/787.14e4bc02.chunk.js",
-    "index.html": "/movie-clone/index.html",
-    "main.d9bf212a.css.map": "/movie-clone/static/css/main.d9bf212a.css.map",
-    "main.a7449ef0.js.map": "/movie-clone/static/js/main.a7449ef0.js.map",
-    "787.14e4bc02.chunk.js.map": "/movie-clone/static/js/787.14e4bc02.chunk.js.map"
+    "main.css": "/movie-app-clone/static/css/main.d9bf212a.css",
+    "main.js": "/movie-app-clone/static/js/main.f3b4c70a.js",
+    "static/js/787.14e4bc02.chunk.js": "/movie-app-clone/static/js/787.14e4bc02.chunk.js",
+    "index.html": "/movie-app-clone/index.html",
+    "main.d9bf212a.css.map": "/movie-app-clone/static/css/main.d9bf212a.css.map",
+    "main.f3b4c70a.js.map": "/movie-app-clone/static/js/main.f3b4c70a.js.map",
+    "787.14e4bc02.chunk.js.map": "/movie-app-clone/static/js/787.14e4bc02.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9bf212a.css",
-    "static/js/main.a7449ef0.js"
+    "static/js/main.f3b4c70a.js"
   ]
 }
