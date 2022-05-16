@@ -2,16 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
     movieDetails: {},
-    loading: false,
 }
 
 const movieDetailsSlice = createSlice({
     name: "moviesDetails",
     initialState,
     reducers: {
-        getMoviesDetails: state => {
-            state.loading = true
-        },
         getMoviesDetailsSuccess: (state, {payload}) => {
             state.movieDetails = payload
             state.loading = false
@@ -22,6 +18,6 @@ const movieDetailsSlice = createSlice({
     },
 })
 
-export const { getMoviesDetails, getMoviesDetailsSuccess, getMoviesDetailsFailure} = movieDetailsSlice.actions
+export const { getMoviesDetailsSuccess, getMoviesDetailsFailure} = movieDetailsSlice.actions
 
 export default movieDetailsSlice.reducer;

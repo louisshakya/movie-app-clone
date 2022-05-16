@@ -3,7 +3,7 @@ import { Card, Tag, Modal, Row, Col, Rate, Statistic } from "antd";
 import axios from "axios";
 import { LikeOutlined } from '@ant-design/icons';
 import styled from "styled-components";
-import {getMoviesDetails,getMoviesDetailsSuccess,getMoviesDetailsFailure} from "../slices/MovieDetailsSlice";
+import { getMoviesDetailsSuccess, getMoviesDetailsFailure } from "../slices/MovieDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const StyledDiv = styled.div`
@@ -28,7 +28,11 @@ const baseUrl = `https://www.omdbapi.com/?`;
 const MovieCard = (props) => {
   const { movie } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [movieDes, setMovieDes] = useState({});
+
+  const { moviesDetails: movieDetailsReducer} = useSelector((state) => state)
+  const {movieDetails: newMovieDetails} = movieDetailsReducer
+  const dispatch = useDispatch();
+  
   const description = (
     <>
       <Tag color="magenta">{movie?.Year}</Tag>
@@ -40,11 +44,12 @@ const MovieCard = (props) => {
     return axios
       .get(`${baseUrl}apikey=6682157d&i=${id}`)
       .then((response) => {
-        setMovieDes(response?.data);
+        dispatch(getMoviesDetailsSuccess(response?.data))
         return response;
       })
       .catch((error) => {
         console.log(error, "error");
+        dispatch(getMoviesDetailsFailure())
         return error.response;
       });
   };
@@ -64,7 +69,7 @@ const MovieCard = (props) => {
   };
 
   const handleMovieRating = () => {
-    const rate = +movieDes?.imdbRating;
+    const rate = +newMovieDetails?.imdbRating;
     return (rate / 10) * 5;
   };
 
@@ -87,7 +92,7 @@ const MovieCard = (props) => {
       </Card>
       <Modal
         className="movie-detail"
-        title={movieDes?.Title}
+        title={newMovieDetails?.Title}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -95,7 +100,7 @@ const MovieCard = (props) => {
       >
         <Row>
           <Col span={8}>
-            <StyledCard cover={<img alt="example" src={movieDes?.Poster} />} />
+            <StyledCard cover={<img alt="example" src={newMovieDetails?.Poster} />} />
           </Col>
           <Col span={16}>
             <div>
@@ -112,29 +117,29 @@ const MovieCard = (props) => {
                 <Col>Director:</Col>
                 <Col>
                 {" "}
-                  <strong>{movieDes?.Director}</strong>
+                  <strong>{newMovieDetails?.Director}</strong>
                 </Col>
               </StyledRow>
               <StyledRow>
                 <Col>Writers:</Col>
                 <Col>
                 {" "}
-                  <strong>{movieDes?.Writer}</strong>
+                  <strong>{newMovieDetails?.Writer}</strong>
                 </Col>
               </StyledRow>
               <StyledRow>
                 <Col>Cast and Crew:</Col>
                 <Col>
                 {" "}
-                  <strong>{movieDes?.Actors}</strong>
+                  <strong>{newMovieDetails?.Actors}</strong>
                 </Col>
               </StyledRow>
               <StyledRow>
                 <Col span={12}>
-                  <Statistic title="Likes" value={movieDes?.imdbVotes} prefix={<LikeOutlined />} />
+                  <Statistic title="Likes" value={newMovieDetails?.imdbVotes} prefix={<LikeOutlined />} />
                 </Col>
                 <Col span={12}>
-                  <Statistic title="BoxOffice" value={movieDes?.BoxOffice}/>
+                  <Statistic title="BoxOffice" value={newMovieDetails?.BoxOffice}/>
                 </Col>                
               </StyledRow>
             </div>
